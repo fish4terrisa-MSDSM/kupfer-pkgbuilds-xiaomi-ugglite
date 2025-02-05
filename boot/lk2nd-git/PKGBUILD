@@ -41,7 +41,7 @@ _package() {
     local target=${1%%-git}
     pkgdesc="lk2nd for ${target##lk2nd-} platform"
     provides+=("$target")
-    install -Dm644 "$srcdir/lk2nd/build-msm8952/lk2nd.img" "${pkgdir}"/boot/lk2nd.img
+    install -Dm644 "$srcdir/lk2nd/build-lk2nd-msm8952/lk2nd.img" "${pkgdir}"/boot/lk2nd.img
 }
 
 for p in "${pkgname[@]}"; do
