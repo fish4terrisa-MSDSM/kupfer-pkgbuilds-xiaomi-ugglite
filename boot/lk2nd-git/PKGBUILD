@@ -21,7 +21,7 @@ sha256sums=(SKIP)
 
 _targets="msm8917"
 pkgname=()
-for target in $_targets; do pkgname+=("${pkgbase%-git}-$target-git"); done
+pkgname+=("${pkgbase%-git}-$_targets-git")
 
 #pkgver() {
  #   cd "$srcdir"/lk2nd
@@ -31,9 +31,10 @@ for target in $_targets; do pkgname+=("${pkgbase%-git}-$target-git"); done
 build() {
     cd "$srcdir"/lk2nd
     rm -rf build-lk2nd-*
-    for target in $_targets; do
+    #for target in $_targets; do
+    target=$_targets
         make TOOLCHAIN_PREFIX=arm-none-eabi- "lk2nd-$target";
-    done
+    #done
 }
 
 _package() {
