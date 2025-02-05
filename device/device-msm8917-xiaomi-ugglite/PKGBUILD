@@ -12,7 +12,7 @@ depends=(
 )
 _commit=a09ed3862b99b4b70d11cc673787fad9efed5c99
 source=(
-    https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/${_commit}/device/testing/device-qcom-msm89x7/deviceinfo
+    deviceinfo
     machine-info
 )
 sha256sums=(
