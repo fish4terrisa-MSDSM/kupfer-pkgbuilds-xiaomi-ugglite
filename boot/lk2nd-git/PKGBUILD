@@ -33,7 +33,7 @@ build() {
     rm -rf build-lk2nd-*
     #for target in $_targets; do
     target=$_targets
-        make TOOLCHAIN_PREFIX=arm-none-eabi- "lk2nd-msm8937";
+        make TOOLCHAIN_PREFIX=arm-none-eabi- "lk2nd-msm8952";
     #done
 }
 
@@ -41,7 +41,7 @@ _package() {
     local target=${1%%-git}
     pkgdesc="lk2nd for ${target##lk2nd-} platform"
     provides+=("$target")
-    install -Dm644 "$srcdir/lk2nd/build-msm8937/lk2nd.img" "${pkgdir}"/boot/lk2nd.img
+    install -Dm644 "$srcdir/lk2nd/build-msm8952/lk2nd.img" "${pkgdir}"/boot/lk2nd.img
 }
 
 for p in "${pkgname[@]}"; do
