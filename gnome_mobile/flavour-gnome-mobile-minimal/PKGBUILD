@@ -1,0 +1,32 @@
+# Maintainer: Raihan Ahamed <raihan1999ahamed@gmail.com>
+_mode=cross
+_nodeps=true
+pkgname=flavour-gnome-mobile-minimal
+pkgdesc="Kupfer flavour: The gtk-based GNOME desktop environment (minimal edition)"
+pkgver=1.0
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL3)
+depends=(
+    meta-gnome-minimal-common
+    gnome-shell-mobile
+    mutter-mobile
+    gdm
+    gnome-calls
+    purism-chatty
+)
+source=(
+    gnome-mobile.lst
+)
+sha256sums=(
+    c004553b6ebe8e820117d5061993e009b4d2a0cdbf40129cf347132336d7dc73
+)
+
+package() {
+    install -Dm644 "$srcdir"/gnome-mobile.lst "$pkgdir"/etc/kupfer/systemd/gnome-mobile.lst
+}

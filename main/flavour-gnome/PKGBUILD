@@ -1,0 +1,17 @@
+_mode=cross
+_nodeps=true
+pkgname=flavour-gnome
+pkgdesc="Kupfer flavour: The gtk-based GNOME desktop environment"
+pkgver=1.0
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL3)
+depends=(
+    flavour-gnome-minimal
+    meta-gnome-common
+)

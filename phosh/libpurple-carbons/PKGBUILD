@@ -1,0 +1,38 @@
+# Maintainer: Raihan Ahamed <raihan1999ahamed@gmail.com>
+# Co-Maintainer: Guillaume Hayot <ghayot@postblue.info>
+_mode=host
+_pkgname=carbons
+pkgname=libpurple-carbons
+pkgdesc="Experimental XEP-0280: Message Carbons plugin for libpurple (Pidgin, Finch, etc.)"
+pkgver=0.2.3.r0.g2fa542d
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    armv7h
+    aarch64
+)
+license=(GPL)
+url=https://github.com/gkdr/carbons
+depends=(
+    libpurple
+    libxml2
+    glib2
+)
+_commit=2fa542db43631bfef8638d686b3361539ee818e2
+source=("git+https://github.com/gkdr/carbons.git#commit=${_commit}")
+sha256sums=(SKIP)
+
+pkgver() {
+    cd $_pkgname
+    git describe --long --abbrev=7 --tags $_commit | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    cd $_pkgname
+    make
+}
+
+package() {
+    install -Dm755 "$srcdir/$_pkgname/build/$_pkgname.so" "$pkgdir/usr/lib/purple-2/$_pkgname.so"
+}

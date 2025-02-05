@@ -1,0 +1,37 @@
+_mode=cross
+_nodeps=true
+pkgname=flavour-phosh
+pkgdesc="Kupfer flavour: The gtk-based Phosh (Phone Shell) environment"
+pkgver=0.1
+pkgrel=4
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL)
+depends=(
+    pipewire-jack
+    flavour-phosh-minimal
+    archlinux-appstream-data
+    gnome-software
+    firefox-libinput-config
+    firefox-wayland-config
+    firefox-mobile-config
+    firefox
+    qt-wayland-config
+    qt-mobile-config
+    eog
+    noto-fonts
+    noto-fonts-emoji
+    gedit
+    gnome-calculator
+    gnome-clocks
+    gnome-contacts
+    gnome-calendar
+    gnome-tweaks
+    phosh-mobile-settings
+    lollypop
+    xdg-user-dirs
+)

@@ -1,0 +1,43 @@
+# Maintainer: Raihan Ahamed (raihan2000) <raihan1999ahamed@gmail.com>
+_mode=host
+_crossdirect=false
+pkgname=libssc
+pkgdesc="Library to expose Qualcomm Sensor Core sensors"
+pkgver=0.1.6.r0.gde7f29c
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    armv7h
+    aarch64
+)
+license=(GPL-3.0)
+url=https://codeberg.org/DylanVanAssche/libssc
+provides=(libssc.so)
+depends=(
+    "libqmi>=1.33.4"
+    glib2
+    protobuf-c
+)
+makedepends=(
+    linux-headers
+    meson
+    git
+)
+_commit=de7f29cc2c4858b553d69cab2e6a58d58197388d #tag 0.1.6
+source=("git+https://codeberg.org/DylanVanAssche/libssc.git#commit=$_commit")
+sha256sums=(a74865be049f36c523a890b09a6d171c2ce460abb23031024580dfcb73149e1b)
+
+pkgver() {
+    cd libssc
+    git describe --long --abbrev=7 --tags $_commit | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    arch-meson libssc build
+    meson compile -C build
+}
+
+package() {
+    DESTDIR="$pkgdir" meson install --no-rebuild -C build
+}

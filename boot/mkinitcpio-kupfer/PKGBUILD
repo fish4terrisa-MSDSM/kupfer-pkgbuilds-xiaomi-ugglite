@@ -1,0 +1,85 @@
+_mode=cross
+_nodeps=true
+pkgname=mkinitcpio-kupfer
+pkgdesc="Modular initramfs image creation utility"
+pkgver=39.2
+pkgrel=2
+_arches=all
+arch=(
+    aarch64
+    x86_64
+)
+license=(GPL)
+url=https://github.com/archlinux/mkinitcpio
+provides=(
+    mkinitcpio
+    initramfs
+)
+conflicts=(
+    mkinitcpio
+    "systemd<255.4-2"
+    "cryptsetup<2.7.0-3"
+    "mdadm<4.3-2"
+    "lvm2<2.03.23-3"
+)
+depends=(
+    awk
+    mkinitcpio-busybox-kupfer
+    kmod
+    util-linux
+    libarchive
+    coreutils
+    bash
+    binutils
+    diffutils
+    findutils
+    grep
+    filesystem
+    gzip
+    systemd
+)
+checkdepends=(
+    bats
+    bats-assert
+    lzop
+)
+optdepends=(
+    "xz: Use lzma or xz compression for the initramfs image"
+    "bzip2: Use bzip2 compression for the initramfs image"
+    "lzop: Use lzo compression for the initramfs image"
+    "lz4: Use lz4 compression for the initramfs image"
+    "mkinitcpio-nfs-utils: Support for root filesystem on NFS"
+)
+makedepends=(asciidoc)
+backup=(etc/mkinitcpio.conf)
+install=mkinitcpio.install
+source=(
+    "https://sources.archlinux.org/other/mkinitcpio/mkinitcpio-$pkgver.tar.xz"
+    0001-trigger.patch
+    0001-use-gzip-for-compression-by-default.patch
+    0002-functions-handle-gzip-compressed-kernels-in-kver_gen.patch
+    0003-check-for-ALARM-kernels-in-run_post_hooks.patch
+)
+sha256sums=(
+    bc37195fab724c42e154a93e6ab797410161c07f223302898673c0e17afd8e0a
+    cbe7082584c244fb2999f962def02b87f02bed4405f595d51e46833bf610fb7b
+    a325e7136836d77cdb86cada0eb5efa4283b9723c9bf598ffea01e607cec254e
+    c68191e3e82f4773d8212a9fcabb7d888f4b4ae5ea404a133d5207dd3c52e14f
+    1ef97c46a65d10fae98e2b791ff798f626cd8de4f72d4500689954c253cf67fe
+)
+
+prepare() {
+    cd mkinitcpio-$pkgver
+    patch -p1 -i ../0001-trigger.patch
+    patch -p1 -i ../0001-use-gzip-for-compression-by-default.patch
+    patch -p1 -i ../0002-functions-handle-gzip-compressed-kernels-in-kver_gen.patch
+    patch -p1 -i ../0003-check-for-ALARM-kernels-in-run_post_hooks.patch
+}
+
+check() {
+    make -C "mkinitcpio-$pkgver" check
+}
+
+package() {
+    make -C "mkinitcpio-$pkgver" DESTDIR="$pkgdir" install
+}

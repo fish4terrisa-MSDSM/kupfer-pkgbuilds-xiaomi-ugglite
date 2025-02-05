@@ -1,0 +1,39 @@
+# Maintainer: Raihan Ahamed <raihan1999ahamed@gmail.com>
+# Co-Maintainer: Silvio Knizek <killermoehre@gmx.net>
+_mode=host
+pkgname=libpurple-xmpp-http-upload
+pkgdesc="HTTP File Upload plugin for libpurple (XMPP Protocol)"
+pkgver=0.2.4.r3.g380788a
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    armv7h
+    aarch64
+)
+license=(GPL3)
+url=https://github.com/Junker/purple-xmpp-http-upload
+depends=(
+    libpurple
+    glib2
+)
+makedepends=(git)
+options=(!buildflags)
+_commit=380788a57729d738215ae52f4d487f6e5c6bb0e2
+source=("git+https://github.com/Junker/purple-xmpp-http-upload.git#commit=${_commit}")
+sha256sums=(SKIP)
+
+pkgver() {
+    cd purple-xmpp-http-upload
+    git describe --long --tags --abbrev=7 "$_commit" | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    cd purple-xmpp-http-upload
+    make
+}
+
+package() {
+    cd purple-xmpp-http-upload
+    make DESTDIR="$pkgdir" install
+}

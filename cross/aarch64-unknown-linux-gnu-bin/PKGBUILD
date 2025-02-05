@@ -1,0 +1,51 @@
+_mode=cross
+pkgname=aarch64-unknown-linux-gnu-bin
+pkgdesc="aarch64 crosscompiler binaries from ArchlinuxARM"
+pkgver=11.2.0
+pkgrel=1
+_arches=specific
+arch=(x86_64)
+license=(
+    GPL3
+    LGPL
+    FDL
+    custom
+)
+provides=(
+    aarch64-unknown-linux-gnu-gcc
+    aarch64-unknown-linux-gnu-binutils
+    aarch64-unknown-linux-gnu-gdb
+    aarch64-unknown-linux-gnu-glibc
+    aarch64-unknown-linux-gnu-linux-api-headers
+)
+source=("https://archlinuxarm.org/builder/xtools/$pkgver/x-tools8.tar.xz")
+sha256sums=(
+    eb94abd01421b90d3756490b37135d25efbf0bf556d8fa6391111106a68c50e6
+)
+noextract=(
+    x-tools8.tar.xz
+)
+
+prepare() {
+    target_dir="$srcdir/x-tools8"
+    [[ ! -e "$target_dir" ]] || find "$target_dir" -type d -exec chmod 755 '{}' '+'
+    rm -rf "$target_dir"
+    bsdtar -xf "$srcdir/x-tools8.tar.xz" -C "$srcdir"
+}
+
+package() {
+    archname="aarch64-unknown-linux-gnu"
+    source_dir="${srcdir}/x-tools8/${archname}"
+    target_dir="${pkgdir}/opt/"
+    bindir="${pkgdir}/usr/bin"
+    mkdir -p "${pkgdir}/opt"
+    cp -r "$source_dir" "${target_dir}"
+    mkdir -p "$bindir"
+    linksrc="../../opt/${archname}"
+    for bin in "${source_dir}/bin/aarch64"*; do
+        ln -sfv "${linksrc}/bin/$(basename "$bin")" "${bindir}/"
+    done
+
+    ln -sfv "../opt/${archname}/${archname}" "${pkgdir}/usr/"
+}
+

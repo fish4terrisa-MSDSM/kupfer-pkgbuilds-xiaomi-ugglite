@@ -1,0 +1,100 @@
+# Maintainer: Raihan Ahamed (raihan2000) <raihan1999ahamed@gmail.com>
+# Contributor: Filipe Laíns (FFY00) <lains@archlinux.org>
+# Contributor: Eric Lehmann <katyl@katyl.info>
+# Contributor: Thomas Fanninger <thomas@fanninger.at>
+# Contributor: ultraviolet <ultravioletnanokitty@gmail.com>
+# Contributor: Pablo Lezeta <prflr88@gmail.com>
+_mode=host
+_crossdirect=false
+pkgname=iio-sensor-proxy
+pkgdesc="IIO accelerometer sensor to input device proxy"
+pkgver=3.5.r10.gfe56bdb
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    armv7h
+    aarch64
+)
+license=(GPL2)
+url=https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/
+depends=(
+    systemd
+    libgudev
+    gtk3
+    polkit
+    libssc
+    pixman-kupfer
+)
+makedepends=(meson)
+checkdepends=(
+    python-gobject
+    python-dbusmock
+    python-psutil
+    umockdev
+)
+_commit=fe56bdba1243cc5f6a652eb75d11ae1d1957ff7e
+_libssc_commit=372ccb3cf248c5486ccee958e2250b7169658700
+source=(
+    "git+https://gitlab.freedesktop.org/hadess/iio-sensor-proxy.git#commit=$_commit"
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0001-iio-sensor-proxy-depend-on-libssc.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0002-proximity-support-SSC-proximity-sensor.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0003-light-support-SSC-light-sensor.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0004-accelerometer-support-SSC-accelerometer-sensor.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0005-compass-support-SSC-compass-sensor.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0006-data-add-libssc-udev-rules.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0007-CI-add-libssc-build.patch
+    https://gitlab.com/postmarketOS/pmaports/-/raw/$_libssc_commit/temp/iio-sensor-proxy/0008-data-iio-sensor-proxy.service.in-add-AF_QIPCRTR.patch
+    iio-sensor-proxy.service.delay
+)
+sha256sums=(
+    a2d6f58407ca6ea73687b00141afd3cf4969fa7ab5f1b1ac91f1cc5c33850e8e
+    49be6d03efee6a3468250c30c4884d9fedb32dbff69116e2b798b58b0b1997c8
+    bff2b9883eaf2d12cfbae9b947bb575940d82c48ad9a8b637230691f27842e5b
+    fc902e19b8b57863a16b25791e1595fd00ce33441e7d096bd4e4f50a598352a7
+    736b198e9f95a2befff20e2c750f7c6855903ac211b53f3710cc5cbd20e2279c
+    473d60f82b388209c065ecd3f34216d36839d43e6a91f60b3d15870cd9cd9b6e
+    892774352c1ecdca3b3f277930e4920cb0533eaef4a02d75a715cdc015110969
+    33bb3ccfd75cf5984036d66f3f29f59292760ab3a7c34e5c9e6679895b108d0c
+    6cf4bec1fcceb6c20843f66b790bee45f359c0fc8344b355e78e6d996e6c10c0
+    cf90abf92bf02f08767a5f386c983b44bfd4acc5868b0c58e89c1d6ac81eacbe
+)
+
+pkgver() {
+    cd $pkgname
+    git describe --long --tags --abbrev=7 "$_commit" | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+    cd $pkgname
+    for patchfile in "${srcdir}"/*.patch; do
+        patch --forward --strip=1 --input="$patchfile"
+    done
+}
+
+build() {
+    mkdir $pkgname/build
+    cd $pkgname/build
+
+    arch-meson .. \
+        -Dssc-support=true \
+        -Dsystemdsystemunitdir=/usr/lib/systemd/system \
+        -Dudevrulesdir=/usr/lib/udev/rules.d \
+        -Dsysconfdir=/usr/share
+
+    ninja
+}
+
+#check() {
+#    cd $pkgname/build
+#   needs French locale
+#   ninja test
+#}
+
+package() {
+    cd $pkgname/build
+
+    DESTDIR="$pkgdir" ninja install
+
+    install -Dm644 "$srcdir"/iio-sensor-proxy.service.delay "$pkgdir"/usr/lib/systemd/system/iio-sensor-proxy.service.d/delay-start.conf
+}

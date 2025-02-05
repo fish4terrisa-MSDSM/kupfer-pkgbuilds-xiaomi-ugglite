@@ -1,0 +1,59 @@
+# Maintainer: Raihan Ahamed <raihan1999ahamed@gmail.com>
+# Co-Maintainer: Caleb Fontenot <foley2431 at gmail dot com>
+# Co-Maintainer: Lance G. <gero3977 at gmail dot com>
+_mode=host
+pkgname=mmsd-tng
+pkgdesc="Multimedia Messaging Service Daemon - The Next Generation"
+pkgver=2.6.0.r1.gd58367e
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    armv7h
+    aarch64
+)
+license=(GPL2)
+url="https://gitlab.com/kop316/mmsd"
+depends=(
+    c-ares
+    mobile-broadband-provider-info
+    libmm-glib
+    libsoup3
+    libphonenumber
+    glib2
+    glibc
+    gcc-libs
+)
+makedepends=(
+    git
+    meson
+)
+_commit=d58367e7c5b1d41e9c60dc46a9f032090b43443f
+source=(
+    "git+https://gitlab.com/kop316/mmsd.git#commit=${_commit}"
+    mmsd-tng.service
+)
+sha256sums=(
+    SKIP
+    493f7ec8193b3a7ce2fc49dff497a03e683d0feb547b9814ae76b032a1145417
+)
+
+pkgver() {
+    cd mmsd
+    git describe --long --abbrev=7 --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+    arch-meson mmsd _build
+    meson compile -C _build
+}
+
+check() {
+    meson test -C _build
+}
+
+package() {
+    provides=(mmsd mmsd-tng)
+    DESTDIR="$pkgdir" meson install -C _build
+    install -Dm644 "$srcdir/mmsd-tng.service" "$pkgdir/usr/lib/systemd/user/mmsd-tng.service"
+}

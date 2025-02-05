@@ -1,0 +1,28 @@
+_mode=cross
+_nodeps=true
+pkgname=flavour-gnome-minimal
+pkgdesc="Kupfer flavour: The gtk-based GNOME desktop environment (minimal edition)"
+pkgver=1.0
+pkgrel=2
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL3)
+depends=(
+    meta-gnome-minimal-common
+    gnome-shell
+    gdm
+)
+source=(
+    gnome.lst
+)
+sha256sums=(
+    d25ef44eda57603bf9b0f54bdb76cf58d079a392ab2149805dd696dd775b532e
+)
+
+package() {
+    install -Dm644 "$srcdir"/gnome.lst "$pkgdir"/etc/kupfer/systemd/gnome.lst
+}

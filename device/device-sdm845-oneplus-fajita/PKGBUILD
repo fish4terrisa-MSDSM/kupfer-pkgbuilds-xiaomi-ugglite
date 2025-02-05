@@ -1,0 +1,37 @@
+_mode=cross
+_nodeps=true
+pkgname=device-sdm845-oneplus-fajita
+pkgver=0.5
+pkgrel=1
+_arches=specific
+arch=(aarch64)
+license=(MIT)
+depends=(device-sdm845-oneplus-common)
+_commit=9026187fe1248c3524042be73eb2d02970742a97
+source=(
+    machine-info
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-fajita/deviceinfo
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-fajita/q6voiced.conf
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-fajita/81-libssc-oneplus-fajita.rules
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-fajita/hexagonrpcd.confd
+)
+sha256sums=(
+    7729d6a89258b470cadd48cfbc704bab7791501c53f45f50737dea6b441a3171
+    f3171266cbdf64f23578cdceb224fac27cb89b5b53ca652332d7ecfc3f9a48b2
+    960805dca70f7173c6e8b86e14ccb4297c23924b9c593ecd9cf4c933785f4942
+    1fca2b33d91cc3021f59bac278190fd944993e2a4479ee1560d6003b3f0ce49f
+    11904ee6ceea5b0e7f74068cdbef627277b41a32a8d2642a61f1e9ea79b80784
+)
+
+package() {
+    install -Dm644 "$srcdir"/machine-info "$pkgdir"/etc/machine-info
+    install -Dm644 "$srcdir"/q6voiced.conf "$pkgdir"/etc/conf.d/q6voiced
+    install -Dm644 "$srcdir"/81-libssc-oneplus-fajita.rules -t "$pkgdir"/usr/lib/udev/rules.d/
+    install -Dm644 "$srcdir"/hexagonrpcd.confd "$pkgdir"/etc/conf.d/hexagonrpcd-sdsp
+    cp "$srcdir"/deviceinfo "$srcdir"/deviceinfo_
+    cat >>"$srcdir"/deviceinfo_ <<EOF
+
+deviceinfo_partitions_data="/dev/sda17"
+EOF
+    install -Dm644 "$srcdir"/deviceinfo_ "$pkgdir"/etc/kupfer/deviceinfo
+}

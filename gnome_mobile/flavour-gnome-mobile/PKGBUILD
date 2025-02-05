@@ -1,0 +1,19 @@
+# Maintainer: Raihan Ahamed <raihan1999ahamed@gmail.com>
+_mode=cross
+_nodeps=true
+pkgname=flavour-gnome-mobile
+pkgdesc="Kupfer flavour: The gtk-based GNOME desktop environment"
+pkgver=1.0
+pkgrel=2
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL3)
+depends=(
+    pipewire-jack
+    flavour-gnome-mobile-minimal
+    meta-gnome-common
+)

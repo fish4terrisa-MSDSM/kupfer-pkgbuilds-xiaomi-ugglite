@@ -1,0 +1,35 @@
+_mode=host
+_pkgname="qrtr"
+pkgname="$_pkgname-git"
+pkgdesc="Userspace reference for net/qrtr in the Linux kernel"
+pkgver=r95.d0d471c
+pkgrel=1
+_arches=specific
+arch=(aarch64)
+license=(BSD-3-Clause)
+url="https://github.com/andersson/$_pkgname"
+provides=("$_pkgname")
+depends=(glibc)
+makedepends=(linux-headers)
+_commit=d0d471c96e7d112fac6f48bd11f9e8ce209c04d2
+source=("git+$url#commit=$_commit")
+sha256sums=(SKIP)
+
+pkgver() {
+    cd "$_pkgname"
+
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cd "$_pkgname"
+
+    make prefix=/usr all
+}
+
+package() {
+    cd "$_pkgname"
+
+    make prefix=/usr DESTDIR="$pkgdir/" install
+    install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$_pkgname/COPYING
+}

@@ -1,0 +1,37 @@
+_mode=cross
+_nodeps=true
+pkgname=device-sdm845-oneplus-enchilada
+pkgver=0.5
+pkgrel=1
+_arches=specific
+arch=(aarch64)
+license=(MIT)
+depends=(device-sdm845-oneplus-common)
+_commit=1761c761b25475d661a4c4f8397f770bbee33563
+source=(
+    machine-info
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-enchilada/deviceinfo
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-enchilada/q6voiced.conf
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-enchilada/81-libssc-oneplus-enchilada.rules
+    https://gitlab.com/postmarketOS/pmaports/-/raw/${_commit}/device/community/device-oneplus-enchilada/hexagonrpcd.confd
+)
+sha256sums=(
+    7729d6a89258b470cadd48cfbc704bab7791501c53f45f50737dea6b441a3171
+    16548df659ef2655a092599b91116b1f575b42b16d174b78bef6bd02c190b782
+    960805dca70f7173c6e8b86e14ccb4297c23924b9c593ecd9cf4c933785f4942
+    cd8207ad1532669306f403cad22c5730e64f3a2a70d58e089225527acce059e2
+    82703747557e83293ecb185bf7808b0d36d5206f0b78cb5721c183d6e156f74b
+)
+
+package() {
+    install -Dm644 "$srcdir"/machine-info "$pkgdir"/etc/machine-info
+    install -Dm644 "$srcdir"/q6voiced.conf "$pkgdir"/etc/conf.d/q6voiced
+    install -Dm644 "$srcdir"/81-libssc-oneplus-enchilada.rules -t "$pkgdir"/usr/lib/udev/rules.d/
+    install -Dm644 "$srcdir"/hexagonrpcd.confd "$pkgdir"/etc/conf.d/hexagonrpcd-sdsp
+    cp "$srcdir"/deviceinfo "$srcdir"/deviceinfo_
+    cat >>"$srcdir"/deviceinfo_ <<EOF
+
+deviceinfo_partitions_data="/dev/sda17"
+EOF
+    install -Dm644 "$srcdir"/deviceinfo_ "$pkgdir"/etc/kupfer/deviceinfo
+}

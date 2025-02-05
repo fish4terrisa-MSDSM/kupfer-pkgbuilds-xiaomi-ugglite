@@ -1,0 +1,26 @@
+_mode=cross
+_nodeps=true
+pkgname=hook-debug-shell
+pkgver=0.2
+pkgrel=1
+_arches=specific
+arch=(any)
+license=(MIT)
+depends=(usb-tethering)
+source=(
+    hooks.sh
+    install.sh
+    hook-debug-shell.conf
+    continue_boot
+)
+sha256sums=(9c4a554cab394949324d933c58057d4fe40b9f619707f1c2fa77e60d56632027
+            681263dc1fcb7a31e0a73164b14add285167160845d9a5c274ef1bca5ef40e5d
+            7c43236698942d154c7b98608b4cafaa5dcdb71d613f4c41f218f0b11c9d9728
+            6ff5b397a778a066da3bcfb4705db25b77797f67191d9accd793ac60e6836cef)
+
+package() {
+    install -Dm755 "$srcdir"/continue_boot "$pkgdir"/usr/lib/initcpio/continue_boot
+    install -Dm644 "$srcdir"/hook-debug-shell.conf "$pkgdir"/etc/kupfer/mkinitcpio.conf.d/hook-debug-shell.conf
+    install -Dm755 "$srcdir"/hooks.sh "$pkgdir"/usr/lib/initcpio/hooks/debugshell
+    install -Dm755 "$srcdir"/install.sh "$pkgdir"/usr/lib/initcpio/install/debugshell
+}
