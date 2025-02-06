@@ -24,7 +24,7 @@ package() {
     cp "$srcdir"/deviceinfo "$srcdir"/deviceinfo_
     cat >>"$srcdir"/deviceinfo_ <<EOF
 
-deviceinfo_partitions_data="/dev/mmcblk0p31"
+deviceinfo_partitions_data="/dev/mmcblk0p48"
 deviceinfo_partitions_microsd="/dev/mmcblk1"
 
 deviceinfo_lk2nd="true"
