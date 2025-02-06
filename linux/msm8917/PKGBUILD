@@ -85,7 +85,9 @@ _package() {
     mkdir -p "${pkgdir}"/{boot,usr/lib/modules}
     make INSTALL_MOD_PATH="${pkgdir}/usr" modules_install
     mkdir -p "${pkgdir}/boot/dtbs/qcom"
-    cp arch/arm64/boot/dts/qcom/msm8917-xiaomi-ugglite.dtb \
+    #cp arch/arm64/boot/dts/qcom/msm8917-xiaomi-ugglite.dtb \
+    #    "${pkgdir}/boot/dtbs/qcom"
+    cp arch/arm64/boot/dts/qcom/msm8940-xiaomi-ugg.dtb \
         "${pkgdir}/boot/dtbs/qcom"
     cp arch/$KARCH/boot/Image.gz "${pkgdir}/boot"
 
