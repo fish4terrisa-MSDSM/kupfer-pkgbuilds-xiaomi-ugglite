@@ -19,7 +19,7 @@ _commit=b9c007bb549229da15e9b2b35f19f82fa4d07967
 source=("git+$url#commit=$_commit")
 sha256sums=(SKIP)
 
-_targets="msm8917"
+_targets="msm8940"
 pkgname=()
 pkgname+=("${pkgbase%-git}-$_targets-git")
 
