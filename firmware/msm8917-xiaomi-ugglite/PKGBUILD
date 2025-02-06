@@ -1,5 +1,5 @@
 _mode=cross
-pkgname=msm8917-xiaomi-ugglite
+pkgname=firmware-msm8917-xiaomi-ugglite
 pkgver=0.1
 pkgrel=2
 _arches=specific
