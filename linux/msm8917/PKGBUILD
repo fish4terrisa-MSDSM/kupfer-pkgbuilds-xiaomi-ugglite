@@ -89,6 +89,8 @@ _package() {
     #    "${pkgdir}/boot/dtbs/qcom"
     cp arch/arm64/boot/dts/qcom/msm8940-xiaomi-ugg.dtb \
         "${pkgdir}/boot/dtbs/qcom"
+    cp arch/arm64/boot/dts/qcom/msm8940-xiaomi-ugg.dtb \
+        "${pkgdir}/boot/dtbs/qcom/msm8917-xiaomi-ugglite.dtb"
     cp arch/$KARCH/boot/Image.gz "${pkgdir}/boot"
 
     # make room for external modules
