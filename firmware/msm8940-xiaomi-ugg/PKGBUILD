@@ -1,5 +1,5 @@
 _mode=cross
-pkgname=firmware-msm8940-xiaomi-ugglite
+pkgname=firmware-msm8940-xiaomi-ugg
 pkgver=0.1
 pkgrel=2
 _arches=specific

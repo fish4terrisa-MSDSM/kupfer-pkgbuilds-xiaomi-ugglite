@@ -1,6 +1,6 @@
 _mode=cross
 _nodeps=true
-pkgname=device-msm8940-xiaomi-ugglite
+pkgname=device-msm8940-xiaomi-ugg
 pkgver=0.1
 pkgrel=5
 _arches=specific
@@ -8,7 +8,7 @@ arch=(aarch64)
 license=(MIT)
 depends=(
     device-msm8940-common
-    firmware-msm8940-xiaomi-ugglite
+    firmware-msm8940-xiaomi-ugg
 )
 _commit=a09ed3862b99b4b70d11cc673787fad9efed5c99
 source=(
