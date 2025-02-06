@@ -1,0 +1,37 @@
+_mode=cross
+_nodeps=true
+pkgname=device-msm8940-xiaomi-ugglite
+pkgver=0.1
+pkgrel=5
+_arches=specific
+arch=(aarch64)
+license=(MIT)
+depends=(
+    device-msm8940-common
+    firmware-msm8940-xiaomi-ugglite
+)
+_commit=a09ed3862b99b4b70d11cc673787fad9efed5c99
+source=(
+    deviceinfo
+    machine-info
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+)
+
+package() {
+    cp "$srcdir"/deviceinfo "$srcdir"/deviceinfo_
+    cat >>"$srcdir"/deviceinfo_ <<EOF
+
+deviceinfo_partitions_data="/dev/mmcblk0p48"
+deviceinfo_partitions_microsd="/dev/mmcblk1"
+
+deviceinfo_lk2nd="true"
+EOF
+    install -Dm644 "$srcdir"/deviceinfo_ "$pkgdir"/etc/kupfer/deviceinfo
+
+    # install -Dm644 "$srcdir"/bq-paella.conf "$pkgdir"/etc/kupfer/mkinitcpio.conf.d/bq-paella.conf
+
+    install -Dm644 "$srcdir"/machine-info "$pkgdir"/etc/machine-info
+}

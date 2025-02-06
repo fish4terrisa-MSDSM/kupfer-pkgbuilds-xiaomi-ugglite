@@ -1,0 +1,27 @@
+_mode=cross
+_nodeps=true
+pkgname=device-msm8940-common
+pkgver=0.1
+pkgrel=5
+_arches=specific
+arch=(aarch64)
+license=(MIT)
+depends=(
+    linux-firmware-qcom
+    msm-firmware-loader
+    linux-msm8940
+    boot-lk2nd-msm8940-git
+    boot-qhypstub-git
+    boot-android-common
+    meta-modem-qcom
+)
+source=(
+    msm8940-common.conf
+)
+sha256sums=(
+    'SKIP'
+)
+
+package() {
+    install -Dm644 "$srcdir"/msm8940-common.conf "$pkgdir"/etc/kupfer/mkinitcpio.conf.d/msm8940-common.conf
+}
