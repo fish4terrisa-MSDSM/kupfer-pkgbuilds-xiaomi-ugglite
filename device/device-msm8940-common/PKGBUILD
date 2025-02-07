@@ -12,6 +12,7 @@ depends=(
     linux-msm8940
     boot-lk2nd-msm8940-git
     boot-android-common
+    qrtr-git
     meta-modem-qcom
 )
 source=(
