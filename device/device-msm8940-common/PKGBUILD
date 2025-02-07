@@ -11,7 +11,6 @@ depends=(
     msm-firmware-loader
     linux-msm8940
     boot-lk2nd-msm8940-git
-    boot-qhypstub-git
     boot-android-common
     meta-modem-qcom
 )
