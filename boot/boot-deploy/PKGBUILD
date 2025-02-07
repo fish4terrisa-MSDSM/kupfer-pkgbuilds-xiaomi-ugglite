@@ -1,0 +1,52 @@
+_mode=cross
+_nodeps=true
+pkgname=boot-deploy
+pkgver=0.18.r0.g4529ed6
+pkgrel=1
+_arches=all
+arch=(
+    x86_64
+    armv7h
+    aarch64
+)
+license=(GPL-2.0-or-later)
+depends=(
+    android-tools
+    bc
+)
+install=boot-deploy.install
+
+replaces=(boot-android-bootimg-updater)
+conflicts=(
+    boot-android-bootimg-updater
+    mkbootimg-git
+)
+
+_commit=4529ed643b65d68645fd04c51f65bef3e4986586
+source=(
+    "git+https://gitlab.postmarketos.org/postmarketOS/boot-deploy.git#commit=$_commit"
+    boot-deploy.conf
+    update-bootimg.sh
+    91-boot-deploy.hook
+)
+sha256sums=(
+    SKIP
+    440330927f78ce0ad1ea387331e8b98b8c26c9ea1ddb53abeb5272900d99498b
+    d9e275edbe8fc1bf4f6e3f79ab0befdf44516c9ee13cd61bff9d8a5c4e1b6521
+    01419bd235d098402fa78bf8127d229d2f8e4fb6f09ce9bc76b5df9e35e52479
+)
+
+pkgver() {
+    cd "$srcdir"/boot-deploy
+    git describe --long --abbrev=7 --tags "$_commit" | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+package() {
+    cd "$srcdir"/boot-deploy
+    install -Dm755 boot-deploy "$pkgdir"/usr/bin/boot-deploy
+    install -Dm755 boot-deploy-functions.sh "$pkgdir"/usr/share/boot-deploy/boot-deploy-functions.sh
+    install -Dm644 "$srcdir"/boot-deploy.conf "$pkgdir"/usr/share/boot-deploy/os-customization
+
+    install -Dm644 "$srcdir"/91-boot-deploy.hook "${pkgdir}/usr/share/libalpm/hooks/91-boot-deploy.hook"
+    install -Dm755 "$srcdir"/update-bootimg.sh "$pkgdir"/usr/bin/update-bootimg
+}

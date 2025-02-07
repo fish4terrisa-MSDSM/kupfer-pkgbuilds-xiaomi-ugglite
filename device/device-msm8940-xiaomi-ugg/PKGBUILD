@@ -28,6 +28,8 @@ deviceinfo_partitions_data="/dev/mmcblk0p48"
 deviceinfo_partitions_microsd="/dev/mmcblk1"
 
 deviceinfo_lk2nd="true"
+
+deviceinfo_kernel_cmdline_append="console=tty0"
 EOF
     install -Dm644 "$srcdir"/deviceinfo_ "$pkgdir"/etc/kupfer/deviceinfo
 

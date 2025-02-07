@@ -9,6 +9,12 @@ run_hook() {
 	set -e # Abort on error
 	unset LOOPDEV
 
+	if [ -n "$kupfer_boot_uuid" ]; then
+                query="UUID=${kupfer_boot_uuid}"
+        else
+                query="LABEL=kupfer_boot"
+        fi
+
 	eval "$(cat /etc/kupfer/deviceinfo)"
 	deviceinfo_partitions_microsd="$deviceinfo_partitions_microsd"
 	deviceinfo_partitions_data="$deviceinfo_partitions_data"
@@ -18,13 +24,14 @@ run_hook() {
 			continue
 		fi
 
-		! scan_partitions "$part" "LABEL=kupfer_boot" || break
+		! scan_partitions "$part" "$query" || break
+
 	done
 
 	echo "Result in initsquared partition scan is: $RESULT"
 
 	if [ -z "$RESULT" ]; then
-		panic "No partition labeled kupfer_boot found. Erroring out..."
+		panic "No boot partition ${query} found. Erroring out..."
 	fi
 
 	busybox mkdir -p /mnt
