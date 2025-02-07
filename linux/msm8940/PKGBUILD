@@ -37,7 +37,7 @@ sha256sums=(
     'SKIP'
 )
 
-_srcname="linux-${_commit}"
+_srcname="linux-6.13-r0"
 
 pkgver() {
     cd ${_srcname}
