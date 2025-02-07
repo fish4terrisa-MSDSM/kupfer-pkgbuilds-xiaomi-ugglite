@@ -3,8 +3,8 @@ _kernelname=msm8940
 pkgbase="linux-$_kernelname"
 _desc="Qualcomm MSM8940 kernel"
 _srcname=linux
-pkgver=6.0.2
-pkgrel=2
+pkgver=6.13
+pkgrel=0
 _arches=specific
 arch=(aarch64)
 license=(GPL2)
@@ -21,7 +21,7 @@ makedepends=(
 options=(!strip)
 _commit=70d901352f443e8c7ae6fd5dac19cb9ed0a1a2df
 source=(
-    "linux-${_commit}.tar.gz::${url}/archive/${_commit}.tar.gz"
+    "linux-${_commit}.tar.gz::${url}/archive/v6.13-r0.tar.gz"
     extra_config
     config.pmos
     linux.preset
