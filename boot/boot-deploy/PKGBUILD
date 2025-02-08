@@ -28,12 +28,16 @@ source=(
     boot-deploy.conf
     update-bootimg.sh
     91-boot-deploy.hook
+    boot-deploy.patched
+    boot-deploy-functions.sh
 )
 sha256sums=(
     SKIP
     440330927f78ce0ad1ea387331e8b98b8c26c9ea1ddb53abeb5272900d99498b
     d9e275edbe8fc1bf4f6e3f79ab0befdf44516c9ee13cd61bff9d8a5c4e1b6521
     01419bd235d098402fa78bf8127d229d2f8e4fb6f09ce9bc76b5df9e35e52479
+    SKIP
+    SKIP
 )
 
 pkgver() {
@@ -43,6 +47,8 @@ pkgver() {
 
 package() {
     cd "$srcdir"/boot-deploy
+    cp "$srcdir"/boot-deploy.patched boot-deploy
+    cp "$srcdir"/boot-deploy-functions.sh boot-deploy-functions.sh
     install -Dm755 boot-deploy "$pkgdir"/usr/bin/boot-deploy
     install -Dm755 boot-deploy-functions.sh "$pkgdir"/usr/share/boot-deploy/boot-deploy-functions.sh
     install -Dm644 "$srcdir"/boot-deploy.conf "$pkgdir"/usr/share/boot-deploy/os-customization

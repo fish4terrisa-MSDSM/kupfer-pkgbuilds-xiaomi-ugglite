@@ -1,0 +1,56 @@
+#!/bin/sh
+# Copyright 2021 Clayton Craft <clayton@craftyguy.net>
+# SPDX-License-Identifier: GPL-3.0-or-later
+set -eu
+initfs_filename=""
+work_dir=""
+output_dir=""
+additional_files=""
+
+functions_file=${BOOT_DEPLOY_FUNCTIONS:-/usr/share/boot-deploy/boot-deploy-functions.sh}
+if [ ! -f "$functions_file" ]; then
+	echo "ERROR: functions file not found: $functions_file"
+	exit 1
+fi
+
+# shellcheck disable=SC1090
+. "$functions_file"
+
+get_options "$@"
+source_deviceinfo
+source_boot_deploy_config
+
+# Hooks can be used to run scripts and binaries after source_*
+# functions are called. This allows users to run extra
+# pre-processing steps before boot-deploy continues with 
+# creating files for boot. 
+execute_hooks
+
+append_or_copy_dtb
+add_mtk_header
+create_uboot_files
+create_bootimg
+create_depthcharge_kernel_image
+create_extlinux_config
+create_grub_config
+add_systemd_boot
+
+mkdir -p "$output_dir"
+
+files_to_copy="$work_dir/$initfs_filename"
+for f in $additional_files; do
+	files_to_copy="$files_to_copy $work_dir/$f"
+done
+
+# shellcheck disable=SC2086
+check_destination_free_space $files_to_copy
+
+# shellcheck disable=SC2086
+copy_files $files_to_copy
+sync
+
+# flashing requires things in /boot to exist
+flash_updated_boot_parts
+flash_updated_depthcharge_kernel
+
+exit 0

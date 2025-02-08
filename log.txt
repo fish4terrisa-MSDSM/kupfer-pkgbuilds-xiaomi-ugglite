@@ -1,0 +1,107 @@
+[0] welcome to lk
+
+[10] platform_init()
+[10] target_init()
+[30] MMC card: DL2032 (0.1, 04 2006), manufacturer: 45, OEM: 100, capacity: 31268536320 bytes
+[40] SDHC Running in HS400 mode
+[40] Done initialization of the card
+[50] SPMI read command failure: 			cmd_id = 1, error = 2
+[50] SPMI read command failure: 			cmd_id = 1, error = 2
+[60] SPMI read command failure: 			cmd_id = 1, error = 2
+[60] SPMI read command failure: 			cmd_id = 1, error = 2
+[70] SPMI read command failure: 			cmd_id = 1, error = 2
+[70] SPMI read command failure: 			cmd_id = 1, error = 2
+[80] SPMI read command failure: 			cmd_id = 1, error = 2
+[80] SPMI read command failure: 			cmd_id = 1, error = 2
+[90] SPMI read command failure: 			cmd_id = 1, error = 2
+[90] SPMI read command failure: 			cmd_id = 1, error = 2
+[100] SPMI read command failure: 			cmd_id = 1, error = 2
+[100] SPMI read command failure: 			cmd_id = 1, error = 2
+[110] SPMI read command failure: 			cmd_id = 1, error = 2
+[110] SPMI read command failure: 			cmd_id = 1, error = 2
+[120] SPMI read command failure: 			cmd_id = 1, error = 2
+[120] Waiting for the RPM to populate smd channel table
+[130] lk2nd_init()
+[130] Booted @ 0x40008000, r0=0x0, r1=0x0, r2=0x43400000
+[130] MMU mapping mismatch @ 0x43400000: 0x43401c1e != 0x43400c1a
+[140] Found valid DTB with 1310 bytes total
+[140] Command line from previous bootloader: lk2nd androidboot.emmc=true androidboot.fpsensor=gdx androidboot.product.region=China androidboot.hwcountry=China androidboot.secureboot=1 androidboot.verifiedbootstate=orange androidboot.veritymode=enforcing androidboot.keymaster=1 androidboot.serialno=204a9d3b androidboot.baseband=msm mdss_mdp.panel=1:dsi:0:qcom,mdss_dsi_tm_otm1901a_720p_video:1:none:cfg:single_dsi:0x2140:01
+[180] Detected device: Xiaomi Redmi Note 5A Prime (ugg) (compatible: xiaomi,ugg)
+[200] MDP continuous splash detected: pipe RGB_0, base: 0x90001000, stride: 2160, src: 720x1280 (0,0), img: 720x1280, out: 720x1280 (0,0), format: 0x2243f (bpp: 3)
+[210] Display refresh: cmd mode: 0, auto refresh: 0 (sel: 0x1f20)
+[220] Registering wrapper bio devices...
+[240] Registering mmc_sdhci bio devices...
+[250] Error: Command timeout error
+[250] Failure getting OCR response from MMC Card
+[250] MMC card failed to respond, try for SD card
+[260] Error: Command timeout error
+[260] The response for CMD8 does not match the supplied value
+[260] Failed to initialize SD card
+[270] Failed detecting MMC/SDC @ slot2
+[270] SD card MMC is unavailable.
+[270] block devices:
+[280]  | dev        | label           | size       | Leaf |
+[280]  | wrp0p48    | lk2nd           |    512 KiB | Yes  |
+[290]  | wrp0p47    | userdata        |  24443 MiB | Yes  |
+[290]  | wrp0p46    | cust            |    832 MiB | Yes  |
+[300]  | wrp0p45    | logdump         |     64 MiB | Yes  |
+[300]  | wrp0p44    | dpo             |      8 KiB | Yes  |
+[310]  | wrp0p43    | msadp           |    256 KiB | Yes  |
+[310]  | wrp0p42    | apdp            |    256 KiB | Yes  |
+[320]  | wrp0p41    | keymasterbak    |    256 KiB | Yes  |
+[320]  | wrp0p40    | keymaster       |    256 KiB | Yes  |
+[330]  | wrp0p39    | cmnlib64bak     |    256 KiB | Yes  |
+[330]  | wrp0p38    | cmnlib64        |    256 KiB | Yes  |
+[340]  | wrp0p37    | cmnlibbak       |    256 KiB | Yes  |
+[350]  | wrp0p36    | cmnlib          |    256 KiB | Yes  |
+[350]  | wrp0p35    | mcfg            |      4 MiB | Yes  |
+[360]  | wrp0p34    | syscfg          |    512 KiB | Yes  |
+[360]  | wrp0p33    | mdtp            |     [370] SPMI read command failure: 			cmd_id = 1, error = 2
+[370] SPMI read command failure: 			cmd_id = 1, error = 2
+32 MiB | Yes  |
+[380]  | wrp0p32    | dip             |   1024 KiB | Yes  |
+[380]  | wrp0p31    | mota            |    512 KiB | Yes  |
+[390]  | wrp0p30    | limits          |     32 KiB | Yes  |
+[390]  | wrp0p29    | oem             |    256 MiB | Yes  |
+[400]  | wrp0p28    | config          |     32 KiB | Yes  |
+[400]  | wrp0p27    | keystore        |    512 KiB | Yes  |
+[410]  | wrp0p26    | misc            |   1024 KiB | Yes  |
+[410]  | wrp0p25    | persist         |     32 MiB | Yes  |
+[420]  | wrp0p24    | cache           |    256 MiB | Yes  |
+[420]  | wrp0p23    | system          |   3072 MiB | Yes  |
+[430]  | wrp0p22    | devinfo         |   1024 KiB | Yes  |
+[430]  | wrp0p21    | recovery        |     64 MiB | Yes  |
+[440]  | wrp0p20    | boot            |     63 MiB | Yes  |
+[450]  | wrp0p19    | abootbak        |   1024 KiB | Yes  |
+[450]  | wrp0p18    | aboot           |   1024 KiB | Yes  |
+[460]  | wrp0p17    | splash          |     11 MiB | Yes  |
+[460]  | wrp0p16    | sec             |     16 KiB | Yes  |
+[470]  | wrp0p15    | fsg             |      1 MiB | Yes  |
+[470]  | wrp0p14    | DDR             |     32 KiB | Yes  |
+[480]  | wrp0p13    | modemst2        |      1 MiB | Yes  |
+[480]  | wrp0p12    | modemst1        |      1 MiB | Yes  |
+[490]  | wrp0p11    | dsp             |     16 MiB | Yes  |
+[490]  | wrp0p10    | devcfgbak       |    256 KiB | Yes  |
+[500]  | wrp0p9     | devcfg          |    256 KiB | Yes  |
+[500]  | wrp0p8     | tzbak           |      2 MiB | Yes  |
+[510]  | wrp0p7     | tz              |      2 MiB | Yes  |
+[510]  | wrp0p6     | rpmbak          |    512 KiB | Yes  |
+[520]  | wrp0p5     | rpm             |    512 KiB | Yes  |
+[520]  | wrp0p4     | sbl1bak         |    512 KiB | Yes  |
+[530]  | wrp0p3     | sbl1            |    512 KiB | Yes  |
+[540]  | wrp0p2     | ssd             |      8 KiB | Yes  |
+[540]  | wrp0p1     | fsc             |      1 KiB | Yes  |
+[550]  | wrp0p0     | modem           |     84 MiB | Yes  |
+[550]  | wrp0       |                 |  29820 MiB |      |
+[560] boot: Trying to boot from the file system...
+[570] boot: Bootable file system not found. Reverting to android boot.[570] ERROR: Invalid boot image header
+[580] ERROR: Could not do normal boot. Reverting to fastboot mode.
+[580] fastboot_init()
+[690] USB init ept @ 0x8f68e000
+[710] udc_start()
+[930] -- reset --
+[930] -- portchange --
+[1020] -- reset --
+[1020] -- portchange --
+[1110] fastboot: processing commands
+[65390] fastboot: oem log
