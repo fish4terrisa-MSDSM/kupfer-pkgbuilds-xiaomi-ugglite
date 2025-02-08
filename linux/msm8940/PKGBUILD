@@ -17,6 +17,7 @@ makedepends=(
     bc
     dtc
     cpio
+    python3
 )
 options=(!strip)
 _commit=70d901352f443e8c7ae6fd5dac19cb9ed0a1a2df
