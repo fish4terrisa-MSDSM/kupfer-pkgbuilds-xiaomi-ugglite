@@ -49,7 +49,7 @@ pkgver() {
 
 prepare() {
     cd ${_srcname}
-    patch -p1 < ../0000-panel-xiaomi-ugglite-otm1901a-tm-backlight.patch
+    cp ../panel-xiaomi-ugglite-otm1901a-tm.c drivers/gpu/drm/panel/msm89x7-generated/panel-xiaomi-ugglite-otm1901a-tm.c
     # make defconfig msm8916_defconfig pmos.config
     cp ../config.pmos .config
     cat ../extra_config >> .config
