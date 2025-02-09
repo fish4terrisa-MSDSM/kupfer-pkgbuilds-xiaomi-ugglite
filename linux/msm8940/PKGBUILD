@@ -28,8 +28,10 @@ source=(
     linux.preset
     60-linux.hook
     90-linux.hook
+    0000-panel-xiaomi-ugglite-otm1901a-tm-backlight.patch
 )
 sha256sums=(
+    'SKIP'
     'SKIP'
     'SKIP'
     'SKIP'
@@ -47,7 +49,7 @@ pkgver() {
 
 prepare() {
     cd ${_srcname}
-
+    patch -p1 ../0000-panel-xiaomi-ugglite-otm1901a-tm-backlight.patch
     # make defconfig msm8916_defconfig pmos.config
     cp ../config.pmos .config
     cat ../extra_config >> .config
