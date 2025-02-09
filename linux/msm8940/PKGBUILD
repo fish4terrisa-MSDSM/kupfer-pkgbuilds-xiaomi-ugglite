@@ -28,7 +28,7 @@ source=(
     linux.preset
     60-linux.hook
     90-linux.hook
-    0000-panel-xiaomi-ugglite-otm1901a-tm-backlight.patch
+    panel-xiaomi-ugglite-otm1901a-tm.c
 )
 sha256sums=(
     'SKIP'
