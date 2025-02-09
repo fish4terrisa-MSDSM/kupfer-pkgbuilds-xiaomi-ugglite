@@ -49,7 +49,7 @@ pkgver() {
 
 prepare() {
     cd ${_srcname}
-    patch -p1 ../0000-panel-xiaomi-ugglite-otm1901a-tm-backlight.patch
+    patch -p1 < ../0000-panel-xiaomi-ugglite-otm1901a-tm-backlight.patch
     # make defconfig msm8916_defconfig pmos.config
     cp ../config.pmos .config
     cat ../extra_config >> .config
