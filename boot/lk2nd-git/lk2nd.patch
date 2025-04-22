@@ -1,0 +1,51 @@
+From 42365454dfdaf29891cd20db6a97884e60427325 Mon Sep 17 00:00:00 2001
+From: Yumi Yukimura <me.cafebabe@gmail.com>
+Date: Sat, 12 Apr 2025 16:28:07 +0800
+Subject: [PATCH] dts: msm8952: xiaomi-{ugg,ugglite}: Enable touchscreen
+ selection
+
+---
+ lk2nd/device/dts/msm8952/msm8917-mtp.dts | 3 +++
+ lk2nd/device/dts/msm8952/msm8940-mtp.dts | 3 +++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/lk2nd/device/dts/msm8952/msm8917-mtp.dts b/lk2nd/device/dts/msm8952/msm8917-mtp.dts
+index 2bf8b4bec..1cefb8dff 100644
+--- a/lk2nd/device/dts/msm8952/msm8917-mtp.dts
++++ b/lk2nd/device/dts/msm8952/msm8917-mtp.dts
+@@ -75,12 +75,15 @@
+ 
+ 			qcom,mdss_dsi_tm_otm1901a_720p_video {
+ 				compatible = "xiaomi,ugglite-otm1901a-tm";
++				touchscreen-compatible = "goodix,gt917d";
+ 			};
+ 			qcom,mdss_dsi_sc_ili9881c_720p_video {
+ 				compatible = "xiaomi,ugglite-ili9881c-sc";
++				touchscreen-compatible = "edt,edt-ft5406";
+ 			};
+ 			qcom,mdss_dsi_hx_otm1901a_720p_video {
+ 				compatible = "xiaomi,ugglite-otm1901a-hx";
++				touchscreen-compatible = "goodix,gt917d";
+ 			};
+ 		};
+ 	};
+diff --git a/lk2nd/device/dts/msm8952/msm8940-mtp.dts b/lk2nd/device/dts/msm8952/msm8940-mtp.dts
+index 231894c35..6fe10e2af 100644
+--- a/lk2nd/device/dts/msm8952/msm8940-mtp.dts
++++ b/lk2nd/device/dts/msm8952/msm8940-mtp.dts
+@@ -23,12 +23,15 @@
+ 
+ 			qcom,mdss_dsi_tm_otm1901a_720p_video {
+ 				compatible = "xiaomi,ugglite-otm1901a-tm";
++				touchscreen-compatible = "goodix,gt917d";
+ 			};
+ 			qcom,mdss_dsi_sc_ili9881c_720p_video {
+ 				compatible = "xiaomi,ugglite-ili9881c-sc";
++				touchscreen-compatible = "edt,edt-ft5406";
+ 			};
+ 			qcom,mdss_dsi_hx_otm1901a_720p_video {
+ 				compatible = "xiaomi,ugglite-otm1901a-hx";
++				touchscreen-compatible = "goodix,gt917d";
+ 			};
+ 		};
+ 	};

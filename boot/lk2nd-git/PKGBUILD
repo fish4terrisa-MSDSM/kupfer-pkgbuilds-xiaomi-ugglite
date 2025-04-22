@@ -16,8 +16,10 @@ makedepends=(
     arm-none-eabi-gcc
 )
 _commit=b9c007bb549229da15e9b2b35f19f82fa4d07967
-source=("git+$url#commit=$_commit")
-sha256sums=(SKIP)
+source=("git+$url#commit=$_commit"
+        "lk2nd.patch")
+sha256sums=(SKIP
+            SKIP)
 
 _targets="msm8940"
 pkgname=()
@@ -30,6 +32,7 @@ pkgname+=("${pkgbase%-git}-$_targets-git")
 
 build() {
     cd "$srcdir"/lk2nd
+    patch -Np1 < ../lk2nd.patch
     rm -rf build-lk2nd-*
     #for target in $_targets; do
     target=$_targets
