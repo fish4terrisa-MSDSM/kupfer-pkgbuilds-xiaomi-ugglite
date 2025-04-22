@@ -14,7 +14,7 @@ deviceinfo_gpu_accelerated="true"
 deviceinfo_chassis="handset"
 deviceinfo_external_storage="true"
 deviceinfo_keyboard="false"
-deviceinfo_getty="ttyGS0,115200"
+deviceinfo_getty="tty0"
 # Bootloader related
 deviceinfo_flash_method="fastboot"
 # deviceinfo_partition_type="msdos"
