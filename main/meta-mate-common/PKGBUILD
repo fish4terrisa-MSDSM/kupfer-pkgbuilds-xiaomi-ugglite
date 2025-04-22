@@ -35,5 +35,5 @@ depends=(
     net-tools
     onboard
     xdg-user-dirs-gtk
-    extra/xdg-desktop-portal-gtk
+    xdg-desktop-portal-gtk
 )
