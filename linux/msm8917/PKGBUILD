@@ -3,7 +3,7 @@ _kernelname=msm8917
 pkgbase="linux-$_kernelname"
 _desc="Qualcomm MSM8917 kernel"
 _srcname=linux
-pkgver=6.0.2
+pkgver=6.14
 pkgrel=2
 _arches=specific
 arch=(aarch64)
@@ -19,9 +19,9 @@ makedepends=(
     cpio
 )
 options=(!strip)
-_commit=70d901352f443e8c7ae6fd5dac19cb9ed0a1a2df
+_tag="$pkgver-r0"
 source=(
-    "linux-${_commit}.tar.gz::${url}/archive/${_commit}.tar.gz"
+    "linux-${_tag}.tar.gz::${url}/archive/v$_tag.tar.gz"
     extra_config
     config.pmos
     linux.preset
@@ -37,7 +37,7 @@ sha256sums=(
     'SKIP'
 )
 
-_srcname="linux-${_commit}"
+_srcname="linux-${_tag}"
 
 pkgver() {
     cd ${_srcname}

@@ -3,7 +3,7 @@ _kernelname=msm8940
 pkgbase="linux-$_kernelname"
 _desc="Qualcomm MSM8940 kernel"
 _srcname=linux
-pkgver=6.13
+pkgver=6.14
 pkgrel=0
 _arches=specific
 arch=(aarch64)
@@ -20,9 +20,9 @@ makedepends=(
     python3
 )
 options=(!strip)
-_commit=70d901352f443e8c7ae6fd5dac19cb9ed0a1a2df
+_tag="$pkgver-r0"
 source=(
-    "linux-${_commit}.tar.gz::${url}/archive/v6.13-r0.tar.gz"
+    "linux-${_tag}.tar.gz::${url}/archive/v${_tag}-r0.tar.gz"
     extra_config
     config.pmos
     linux.preset
@@ -40,7 +40,7 @@ sha256sums=(
     'SKIP'
 )
 
-_srcname="linux-6.13-r0"
+_srcname="linux-6.14-r0"
 
 pkgver() {
     cd ${_srcname}
@@ -49,7 +49,7 @@ pkgver() {
 
 prepare() {
     cd ${_srcname}
-    cp ../panel-xiaomi-ugglite-otm1901a-tm.c drivers/gpu/drm/panel/msm89x7-generated/panel-xiaomi-ugglite-otm1901a-tm.c
+#    cp ../panel-xiaomi-ugglite-otm1901a-tm.c drivers/gpu/drm/panel/msm89x7-generated/panel-xiaomi-ugglite-otm1901a-tm.c
     # make defconfig msm8916_defconfig pmos.config
     cp ../config.pmos .config
     cat ../extra_config >> .config
