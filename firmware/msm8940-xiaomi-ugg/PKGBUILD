@@ -7,6 +7,7 @@ arch=(aarch64)
 license=(GPL)
 depends=(linux-firmware-qcom)
 source=("adreno-quirks.sh")
+sha256sum=('SKIP')
 options=(!strip)
 
 build() {
