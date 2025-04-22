@@ -28,7 +28,7 @@ source=(
     linux.preset
     60-linux.hook
     90-linux.hook
-    panel-xiaomi-ugglite-otm1901a-tm.c
+    msm8940-xiaomi-ugg.dts
 )
 sha256sums=(
     'SKIP'
@@ -51,6 +51,7 @@ prepare() {
     cd ${_srcname}
 #    cp ../panel-xiaomi-ugglite-otm1901a-tm.c drivers/gpu/drm/panel/msm89x7-generated/panel-xiaomi-ugglite-otm1901a-tm.c
     # make defconfig msm8916_defconfig pmos.config
+    cp ../msm8940-xiaomi-ugg.dts ./arch/arm64/boot/dts/qcom/msm8940-xiaomi-ugg.dts
     cp ../config.pmos .config
     cat ../extra_config >> .config
 
