@@ -1,0 +1,39 @@
+_mode=cross
+_nodeps=true
+pkgname=meta-mate-common
+pkgdesc="Common metapackage for the MATE DE"
+pkgver=1.0
+pkgrel=6
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL3)
+depends=(
+    meta-mate-minimal-common
+    archlinux-appstream-data
+    evince
+    chromium
+    plank
+    grilo-plugins
+    gvfs
+    gvfs-afc
+    gvfs-dnssd
+    gvfs-goa
+    gvfs-google
+    gvfs-gphoto2
+    gvfs-mtp
+    gvfs-nfs
+    gvfs-onedrive
+    gvfs-smb
+    gvfs-wsdd
+    glmark2
+    libreoffice-fresh
+    libreoffice-fresh-zh-cn
+    net-tools
+    onboard
+    xdg-user-dirs-gtk
+    extra/xdg-desktop-portal-gtk
+)

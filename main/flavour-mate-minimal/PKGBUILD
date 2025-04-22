@@ -1,0 +1,28 @@
+_mode=cross
+_nodeps=true
+pkgname=flavour-mate-minimal
+pkgdesc="Kupfer flavour: The gtk-based MATE desktop environment (minimal edition)"
+pkgver=1.0
+pkgrel=2
+_arches=all
+arch=(
+    x86_64
+    aarch64
+    armv7h
+)
+license=(GPL3)
+depends=(
+    meta-mate-minimal-common
+    gdm
+    'xf86-video-vesa' 'xorg-bdftopcf' 'xorg-docs' 'xorg-font-util' 'xorg-fonts-100dpi' 'xorg-fonts-75dpi' 'xorg-fonts-encodings' 'xorg-iceauth' 'xorg-mkfontdir' 'xorg-mkfontscale' 'xorg-server' 'xorg-server-common' 'xorg-server-devel' 'xorg-server-xephyr' 'xorg-server-xnest' 'xorg-server-xvfb' 'xorg-sessreg' 'xorg-setxkbmap' 'xorg-smproxy' 'xorg-x11perf' 'xorg-xauth' 'xorg-xbacklight' 'xorg-xcmsdb' 'xorg-xcursorgen' 'xorg-xdpyinfo' 'xorg-xdriinfo' 'xorg-xev' 'xorg-xgamma' 'xorg-xhost' 'xorg-xinput' 'xorg-xkbcomp' 'xorg-xkbevd' 'xorg-xkbutils' 'xorg-xkill' 'xorg-xlsatoms' 'xorg-xlsclients' 'xorg-xmodmap' 'xorg-xpr' 'xorg-xprop' 'xorg-xrandr' 'xorg-xrdb' 'xorg-xrefresh' 'xorg-xset' 'xorg-xsetroot' 'xorg-xvinfo' 'xorg-xwayland' 'xorg-xwd' 'xorg-xwininfo' 'xorg-xwud' 'xorg-bdftopcf' 'xorg-iceauth' 'xorg-mkfontdir' 'xorg-mkfontscale' 'xorg-sessreg' 'xorg-setxkbmap' 'xorg-smproxy' 'xorg-x11perf' 'xorg-xauth' 'xorg-xbacklight' 'xorg-xcmsdb' 'xorg-xcursorgen' 'xorg-xdpyinfo' 'xorg-xdriinfo' 'xorg-xev' 'xorg-xgamma' 'xorg-xhost' 'xorg-xinput' 'xorg-xkbcomp' 'xorg-xkbevd' 'xorg-xkbprint' 'xorg-xkbutils' 'xorg-xkill' 'xorg-xlsatoms' 'xorg-xlsclients' 'xorg-xmodmap' 'xorg-xpr' 'xorg-xprop' 'xorg-xrandr' 'xorg-xrdb' 'xorg-xrefresh' 'xorg-xset' 'xorg-xsetroot' 'xorg-xvinfo' 'xorg-xwd' 'xorg-xwininfo' 'xorg-xwud'
+)
+source=(
+    mate.lst
+)
+sha256sums=(
+    d25ef44eda57603bf9b0f54bdb76cf58d079a392ab2149805dd696dd775b532e
+)
+
+package() {
+    install -Dm644 "$srcdir"/mate.lst "$pkgdir"/etc/kupfer/systemd/mate.lst
+}
