@@ -22,7 +22,7 @@ makedepends=(
 options=(!strip)
 _tag="$pkgver-r0"
 source=(
-    "linux-${_tag}.tar.gz::${url}/archive/v${_tag}-r0.tar.gz"
+    "linux-${_tag}.tar.gz::${url}/archive/v${_tag}.tar.gz"
     extra_config
     config.pmos
     linux.preset
