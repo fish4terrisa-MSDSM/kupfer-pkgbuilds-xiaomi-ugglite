@@ -24,7 +24,7 @@ _tag="6.14-r0"
 source=(
     "linux-${_tag}.tar.gz::${url}/archive/v${_tag}.tar.gz"
     extra_config
-    config-1.arch
+    config.pmos
     linux.preset
     60-linux.hook
     90-linux.hook
@@ -55,10 +55,8 @@ prepare() {
     echo "-$pkgrel" > localversion.10-pkgrel
     echo "${pkgbase#linux}" > localversion.20-pkgname
     cp ../msm8940-xiaomi-ugg.dts ./arch/arm64/boot/dts/qcom/msm8940-xiaomi-ugg.dts
-    cp ../config-1.arch .config
+    cp ../config.pmos .config
     cat ../extra_config >> .config
-
-    make oldconfig
 
     # don't run depmod on "make install". We'll do this ourselves in packaging
     sed -i "2iexit 0" scripts/depmod.sh
