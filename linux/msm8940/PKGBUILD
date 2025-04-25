@@ -55,10 +55,11 @@ prepare() {
     echo "-$pkgrel" > localversion.10-pkgrel
     echo "${pkgbase#linux}" > localversion.20-pkgname
     cp ../msm8940-xiaomi-ugg.dts ./arch/arm64/boot/dts/qcom/msm8940-xiaomi-ugg.dts
-    cp ../config.pmos .config
+    cp ../config-1.arch .config
     cat ../extra_config >> .config
 
     # don't run depmod on "make install". We'll do this ourselves in packaging
+    make ${MAKEFLAGS} olddefconfig
     sed -i "2iexit 0" scripts/depmod.sh
 }
 
