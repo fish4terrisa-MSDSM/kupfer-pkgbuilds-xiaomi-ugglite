@@ -17,5 +17,5 @@ build() {
 
 package() {
     mkdir -p $pkgdir
-    install -Dm644 "$srcdir"/adreno-quirks.sh "$pkgdir"/etc/profile.d/adreno-quirks.sh
+    install -Dm644 ../adreno-quirks.sh "$pkgdir"/etc/profile.d/adreno-quirks.sh
 }
