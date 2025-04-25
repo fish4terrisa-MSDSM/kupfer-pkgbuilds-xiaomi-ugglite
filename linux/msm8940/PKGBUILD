@@ -58,7 +58,7 @@ prepare() {
     cp ../config.arch .config
     cat ../extra_config >> .config
 
-    make olddefconfig
+    make olddefconfig KBUILD_VERBOSE=2
 
     # don't run depmod on "make install". We'll do this ourselves in packaging
     sed -i "2iexit 0" scripts/depmod.sh
