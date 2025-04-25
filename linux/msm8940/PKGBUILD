@@ -1,4 +1,4 @@
-_mode=host
+_mode=cross
 _kernelname=msm8940
 pkgbase="linux-$_kernelname"
 _desc="Qualcomm MSM8940 kernel"
